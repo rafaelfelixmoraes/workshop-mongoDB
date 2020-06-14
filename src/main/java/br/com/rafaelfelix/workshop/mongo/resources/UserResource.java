@@ -27,6 +27,7 @@ public class UserResource {
             @ApiResponse(code = 200, message = "Successfully retrieved users list")
 	})
 	public ResponseEntity<List<UserDomain>> findAll() {
+		userService.saveAll(); //Creating database mocks
 		List<UserDomain> usersList = userService.findAll();
 		
 		return ResponseEntity.ok(usersList);
