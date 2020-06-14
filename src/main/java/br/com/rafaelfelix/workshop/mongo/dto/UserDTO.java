@@ -1,4 +1,4 @@
-package br.com.rafaelfelix.workshop.mongo;
+package br.com.rafaelfelix.workshop.mongo.dto;
 
 import java.io.Serializable;
 

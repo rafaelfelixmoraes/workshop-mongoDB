@@ -10,8 +10,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import br.com.rafaelfelix.workshop.mongo.UserDTO;
 import br.com.rafaelfelix.workshop.mongo.domains.UserDomain;
+import br.com.rafaelfelix.workshop.mongo.dto.UserDTO;
 import br.com.rafaelfelix.workshop.mongo.services.UserService;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiOperation;
