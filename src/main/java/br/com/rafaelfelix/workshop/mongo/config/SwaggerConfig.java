@@ -20,8 +20,8 @@ public class SwaggerConfig {
 	
 	private static final Contact DEFAULT_CONTACT = new Contact(
 			"Rafael Felix de Moraes", 
-			"https://github.com/rafaelfelixmoraes",
-			"rafaelfelix1433@gmail.com");
+			"https://rafaelfelixmoraes.github.io/",
+			"dickinson.rafael@gmail.com");
 
 	private static final Set<String> DEFAULT_CONSUMES_AND_PRODUCES = new HashSet<String>(
 			Arrays.asList("application/json", "application/xml"));
