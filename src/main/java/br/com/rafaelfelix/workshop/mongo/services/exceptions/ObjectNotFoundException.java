@@ -1,4 +1,4 @@
-package br.com.rafaelfelix.workshop.mongo.exceptions;
+package br.com.rafaelfelix.workshop.mongo.services.exceptions;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
