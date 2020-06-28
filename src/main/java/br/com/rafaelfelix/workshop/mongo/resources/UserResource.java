@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
+import br.com.rafaelfelix.workshop.mongo.domains.PostDomain;
 import br.com.rafaelfelix.workshop.mongo.domains.UserDomain;
 import br.com.rafaelfelix.workshop.mongo.dto.NewUserDTO;
 import br.com.rafaelfelix.workshop.mongo.dto.UserDTO;
@@ -52,7 +53,7 @@ public class UserResource {
 	}
 	
 	@GetMapping(path = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
-	@ApiOperation(value = "Get a User by ID", response = List.class)
+	@ApiOperation(value = "Get a User by ID", response = UserDTO.class)
 	@ApiResponses(value = {
             @ApiResponse(code = 200, message = "Successfully retrieved user"),
             @ApiResponse(code = 500, message = "A strange error occured"),
@@ -62,6 +63,19 @@ public class UserResource {
 		UserDomain userObj = userService.findById(id);
 		
 		return ResponseEntity.ok(new UserDTO(userObj));
+	}
+	
+	@GetMapping(path = "/{id}/posts", produces = MediaType.APPLICATION_JSON_VALUE)
+	@ApiOperation(value = "Get Posts by user ID", response = List.class)
+	@ApiResponses(value = {
+            @ApiResponse(code = 200, message = "Successfully retrieved user's posts"),
+            @ApiResponse(code = 500, message = "A strange error occured"),
+            @ApiResponse(code = 404, message = "User not found")
+	})
+	public ResponseEntity<List<PostDomain>> findPostsByUserId(@Valid @NotEmpty @PathVariable String id){
+		UserDomain userObj = userService.findById(id);
+		
+		return ResponseEntity.ok(userObj.getPosts());
 	}
 	
 	@ApiOperation(value = "Create a new User")

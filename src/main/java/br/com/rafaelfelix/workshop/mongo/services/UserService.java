@@ -1,6 +1,5 @@
 package br.com.rafaelfelix.workshop.mongo.services;
 
-import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 
@@ -22,15 +21,7 @@ public class UserService {
 		return userRepo.findAll();
 	}
 	
-	public void saveAll() {
-		userRepo.deleteAll();//TODO exclude this line after tests
-		
-		UserDomain maria = new UserDomain(null, "Maria Brown", "maria@gmail.com");
-		UserDomain alex = new UserDomain(null, "Alex Green", "alex@gmail.com");
-		UserDomain bob = new UserDomain(null, "Bob Grey", "bob@gmail.com");
-		
-		userRepo.saveAll(Arrays.asList(maria, alex, bob));
-	}
+	public void saveAll() {}
 	
 	public UserDomain findById(String id) {
 		Optional<UserDomain> obj = userRepo.findById(id);
