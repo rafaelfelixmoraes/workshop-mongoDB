@@ -1,5 +1,6 @@
 package br.com.rafaelfelix.workshop.mongo.resources.exceptions;
 
+import java.time.format.DateTimeParseException;
 import java.util.Date;
 
 import javax.servlet.http.HttpServletRequest;
@@ -54,6 +55,17 @@ public class ResourceExceptionHandler {
     	   .body(new StandardError(new Date(), 
     			   HttpStatus.METHOD_NOT_ALLOWED.value(), 
     			   "Method not allowed for this URI", 
+    			   exception.getMessage(), 
+    			   request.getRequestURI()));
+    }
+	
+	@ExceptionHandler(DateTimeParseException.class)
+    @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
+    protected ResponseEntity<?> dateTimeParse(DateTimeParseException exception, HttpServletRequest request) {
+		return ResponseEntity.status(HttpStatus.BAD_REQUEST)
+    	   .body(new StandardError(new Date(), 
+    			   HttpStatus.INTERNAL_SERVER_ERROR.value(), 
+    			   "DateTime parse error", 
     			   exception.getMessage(), 
     			   request.getRequestURI()));
     }

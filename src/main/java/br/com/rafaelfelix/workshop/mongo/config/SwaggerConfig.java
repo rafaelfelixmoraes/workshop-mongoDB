@@ -8,6 +8,8 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 import springfox.documentation.builders.ApiInfoBuilder;
+import springfox.documentation.builders.PathSelectors;
+import springfox.documentation.builders.RequestHandlerSelectors;
 import springfox.documentation.service.ApiInfo;
 import springfox.documentation.service.Contact;
 import springfox.documentation.spi.DocumentationType;
@@ -31,14 +33,19 @@ public class SwaggerConfig {
 		return new Docket(DocumentationType.SWAGGER_2)
 				.apiInfo(defaultApiInfo())
 				.consumes(DEFAULT_CONSUMES_AND_PRODUCES)
-				.produces(DEFAULT_CONSUMES_AND_PRODUCES);
+				.produces(DEFAULT_CONSUMES_AND_PRODUCES)
+				.select()
+				.apis(RequestHandlerSelectors.basePackage("br.com.rafaelfelix.workshop.mongo.resources"))
+				.paths(PathSelectors.any())
+				.build();
 	}
 
   private ApiInfo defaultApiInfo() {
+	  String version = getClass().getPackage().getImplementationVersion();
     return new ApiInfoBuilder()
         .title("Workshop MongoDB - APIs")
         .description("\"REST APIs for praticle MongoDB workshop with Java/Spring\"")
-        .version("0.0.1")
+        .version(version != null ? version : "1.0.0")
         .license("Apache License Version 2.0")
         .licenseUrl("https://www.apache.org/licenses/LICENSE-2.0\"")
         .contact(DEFAULT_CONTACT)
